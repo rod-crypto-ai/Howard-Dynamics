@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="error-page">
+    <div class="shell">
+        <p class="eyebrow">500</p>
+        <h1>The site hit an unexpected error.</h1>
+        <p>Try the request again or contact Howard Dynamics directly.</p>
+        <a class="button" href="{{ url_for('main.home') }}">Return home</a>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="page-hero">
+    <div class="shell page-hero__inner">
+        <div>
+            <p class="eyebrow">Government Contracting</p>
+            <h1>Defined O&amp;M workshare. Clear execution responsibility.</h1>
+        </div>
+        <p>
+            Howard Dynamics supports direct government requirements and prime-contractor
+            teams where maintenance, facility operations, logistics, field services, or
+            technical staffing must be performed and measured.
+        </p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="shell contracting-grid">
+        <article class="contracting-card">
+            <p class="eyebrow">For government buyers</p>
+            <h2>Send the requirement package.</h2>
+            <p>
+                Include the statement of work, performance location, period of performance,
+                asset or facility quantities, service standards, response deadline, and
+                contract vehicle when known.
+            </p>
+            <a href="{{ url_for('main.contact') }}">Request an O&amp;M capability response <span aria-hidden="true">→</span></a>
+        </article>
+        <article class="contracting-card">
+            <p class="eyebrow">For prime contractors</p>
+            <h2>Bring a defined workshare.</h2>
+            <p>
+                Howard Dynamics is most useful when the O&amp;M scope, staffing gap,
+                geographic requirement, compliance burden, and capture timeline are explicit.
+            </p>
+            <a href="{{ url_for('main.contact') }}">Discuss a teaming requirement <span aria-hidden="true">→</span></a>
+        </article>
+    </div>
+</section>
+
+<section class="section section--dark">
+    <div class="shell procurement-grid">
+        <div>
+            <p class="eyebrow">Procurement information</p>
+            <h2>Core company details</h2>
+            <p>
+                Registration identifiers appear here only when they are entered in the
+                production environment configuration.
+            </p>
+        </div>
+        <dl class="data-list">
+            <div><dt>Legal name</dt><dd>{{ company_name }}</dd></div>
+            <div><dt>Established</dt><dd>2017</dd></div>
+            <div><dt>Headquarters</dt><dd>{{ company_location }}</dd></div>
+            <div><dt>Business focus</dt><dd>Operations and maintenance services</dd></div>
+            {% for label, value in identifiers.items() %}
+                <div><dt>{{ label }}</dt><dd>{{ value }}</dd></div>
+            {% endfor %}
+        </dl>
+    </div>
+</section>
+
+<section class="section">
+    <div class="shell">
+        <div class="section-heading">
+            <div>
+                <p class="eyebrow">NAICS Alignment</p>
+                <h2>Service categories aligned to the O&amp;M mission</h2>
+            </div>
+            <p>
+                The website list should match the company’s current SAM.gov registration
+                and the work Howard Dynamics can actually execute.
+            </p>
+        </div>
+
+        <div class="naics-table" role="table" aria-label="Representative NAICS codes">
+            {% for item in naics_codes %}
+                <div class="naics-row" role="row">
+                    <strong role="cell">{{ item.code }}</strong>
+                    <span role="cell">{{ item.title }}</span>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="section section--muted">
+    <div class="shell submission-checklist">
+        <div>
+            <p class="eyebrow">What to send</p>
+            <h2>Information needed for a serious response</h2>
+        </div>
+        <ul class="feature-list">
+            <li><span>✓</span><strong>Solicitation or opportunity number</strong></li>
+            <li><span>✓</span><strong>Statement of work or performance work statement</strong></li>
+            <li><span>✓</span><strong>Place and period of performance</strong></li>
+            <li><span>✓</span><strong>Asset, facility, service, and staffing quantities</strong></li>
+            <li><span>✓</span><strong>Performance standards and reporting requirements</strong></li>
+            <li><span>✓</span><strong>Proposal deadline and requested workshare</strong></li>
+        </ul>
+    </div>
+</section>
+{% endblock %}

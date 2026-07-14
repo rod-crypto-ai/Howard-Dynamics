@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="page-hero page-hero--compact">
+    <div class="shell page-hero__inner">
+        <div>
+            <p class="eyebrow">Privacy</p>
+            <h1>Website privacy notice</h1>
+        </div>
+        <p>How information submitted through this website is handled.</p>
+    </div>
+</section>
+
+<section class="section">
+    <article class="shell legal-copy">
+        <h2>Information collected</h2>
+        <p>
+            Howard Dynamics may collect the information you submit through contact and
+            career-interest forms, along with basic technical information such as IP address,
+            browser user agent, and submission time.
+        </p>
+
+        <h2>How information is used</h2>
+        <p>
+            Submitted information may be used to respond to inquiries, evaluate business or
+            teaming opportunities, maintain a candidate pipeline, prevent abuse, and improve
+            website operations.
+        </p>
+
+        <h2>Do not submit sensitive information</h2>
+        <p>
+            Do not submit classified information, controlled unclassified information,
+            export-controlled technical data, Social Security numbers, financial account
+            information, medical information, passwords, or copies of identity documents.
+        </p>
+
+        <h2>Retention and sharing</h2>
+        <p>
+            Information may be retained for legitimate business, recruiting, compliance, and
+            security purposes. It is not sold. It may be shared with service providers or
+            business partners only when reasonably necessary to evaluate or perform relevant work.
+        </p>
+
+        <h2>Contact</h2>
+        <p>
+            Use the <a href="{{ url_for('main.contact') }}">contact form</a> to request access,
+            correction, or deletion of information previously submitted through the website.
+        </p>
+    </article>
+</section>
+{% endblock %}

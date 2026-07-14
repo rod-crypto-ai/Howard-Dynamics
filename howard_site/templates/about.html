@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="page-hero">
+    <div class="shell page-hero__inner">
+        <div>
+            <p class="eyebrow">About Howard Dynamics</p>
+            <h1>Built around one mission: dependable operations.</h1>
+        </div>
+        <p>
+            Established in 2017 and headquartered in Texarkana, Texas, Howard Dynamics
+            provides focused operations and maintenance support for government, defense,
+            prime-contractor, and commercial requirements.
+        </p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="shell story-grid">
+        <div class="story-grid__statement">
+            <p class="eyebrow">Company position</p>
+            <h2>O&amp;M is the business—not one item buried in a long service list.</h2>
+        </div>
+        <div class="story-grid__body">
+            <p>
+                Howard Dynamics is structured around fleet and equipment maintenance,
+                facility and site operations, logistics and material support, technical
+                field services, and workforce readiness. Those are not unrelated offerings;
+                they are connected parts of the same operational system.
+            </p>
+            <p>
+                The company supports direct government needs and defined subcontracting
+                workshare. Howard Dynamics does not claim every requirement is a fit. Scope,
+                access, staffing, supply, schedule, and performance risk are evaluated before
+                a commitment is made.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="section section--muted">
+    <div class="shell values-grid">
+        {% for item in differentiators %}
+            <article class="value-card">
+                <span>{{ "%02d"|format(loop.index) }}</span>
+                <h2>{{ item.title }}</h2>
+                <p>{{ item.body }}</p>
+            </article>
+        {% endfor %}
+    </div>
+</section>
+
+<section class="section">
+    <div class="shell story-grid">
+        <div class="story-grid__statement">
+            <p class="eyebrow">Who we serve</p>
+            <h2>Flexible enough to team. Focused enough to be credible.</h2>
+        </div>
+        <div class="audience-list">
+            <div><strong>Government agencies</strong><span>Federal, defense, state, and local O&amp;M requirements.</span></div>
+            <div><strong>Prime contractors</strong><span>Defined maintenance, logistics, facility, staffing, and field-service workshare.</span></div>
+            <div><strong>Fleet and site operators</strong><span>Support for asset readiness and reliable daily operations.</span></div>
+            <div><strong>Commercial organizations</strong><span>O&amp;M needs requiring responsive, accountable execution.</span></div>
+        </div>
+    </div>
+</section>
+
+<section class="section section--cta">
+    <div class="shell cta-panel">
+        <div>
+            <p class="eyebrow">Work with us</p>
+            <h2>Evaluate Howard Dynamics against a real O&amp;M requirement.</h2>
+            <p>Send the scope. We will determine whether the work is a credible fit.</p>
+        </div>
+        <a class="button button--light" href="{{ url_for('main.contact') }}">Start a requirement review</a>
+    </div>
+</section>
+{% endblock %}

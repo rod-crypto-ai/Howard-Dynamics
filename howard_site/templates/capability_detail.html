@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="page-hero page-hero--detail">
+    <div class="shell page-hero__inner">
+        <div>
+            <p class="eyebrow">{{ capability.eyebrow }}</p>
+            <h1>{{ capability.title }}</h1>
+        </div>
+        <p>{{ capability.summary }}</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="shell detail-grid">
+        <div>
+            <p class="eyebrow">Service scope</p>
+            <h2>What Howard Dynamics can provide</h2>
+        </div>
+        <ul class="feature-list">
+            {% for service in capability.services %}
+                <li>
+                    <span aria-hidden="true">✓</span>
+                    <strong>{{ service }}</strong>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</section>
+
+<section class="section section--dark">
+    <div class="shell outcome-grid">
+        <div>
+            <p class="eyebrow">Operational outcomes</p>
+            <h2>What the service is designed to improve</h2>
+        </div>
+        <div class="outcome-cards">
+            {% for outcome in capability.outcomes %}
+                <article>
+                    <span>{{ "%02d"|format(loop.index) }}</span>
+                    <h3>{{ outcome }}</h3>
+                </article>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="shell buyer-grid">
+        <div>
+            <p class="eyebrow">Typical customers</p>
+            <h2>Who this O&amp;M service supports</h2>
+        </div>
+        <div class="tag-list">
+            {% for buyer in capability.buyers %}
+                <span>{{ buyer }}</span>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="section section--cta">
+    <div class="shell cta-panel">
+        <div>
+            <p class="eyebrow">Requirement review</p>
+            <h2>Have a {{ capability.title|lower }} requirement?</h2>
+            <p>Send the scope, location, performance period, quantity, and response deadline.</p>
+        </div>
+        <a class="button button--light" href="{{ url_for('main.contact') }}">Discuss this service</a>
+    </div>
+</section>
+{% endblock %}

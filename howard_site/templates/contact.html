@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="page-hero page-hero--compact">
+    <div class="shell page-hero__inner">
+        <div>
+            <p class="eyebrow">Contact</p>
+            <h1>Bring the O&amp;M requirement.</h1>
+        </div>
+        <p>
+            The clearer the assets, facilities, location, performance standards, schedule,
+            and response deadline, the faster Howard Dynamics can evaluate the work.
+        </p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="shell form-layout">
+        <aside class="contact-aside">
+            <p class="eyebrow">Useful details</p>
+            <h2>Include these in your message.</h2>
+            <ul class="check-list check-list--dark">
+                <li>Agency, company, or organization</li>
+                <li>Solicitation or project reference</li>
+                <li>Work location and performance period</li>
+                <li>Assets, facilities, staffing, or service quantities</li>
+                <li>Required performance standards</li>
+                <li>Response or proposal deadline</li>
+            </ul>
+            <div class="contact-meta">
+                <span>Headquarters</span>
+                <strong>{{ company_location }}</strong>
+                {% if contact_email %}
+                    <span>Email</span>
+                    <a href="mailto:{{ contact_email }}">{{ contact_email }}</a>
+                {% endif %}
+                {% if contact_phone %}
+                    <span>Phone</span>
+                    <a href="tel:{{ contact_phone|replace(' ', '') }}">{{ contact_phone }}</a>
+                {% endif %}
+            </div>
+        </aside>
+
+        <form class="form-card" method="post" novalidate>
+            {{ form.hidden_tag() }}
+
+            <div class="form-grid">
+                <div class="field">
+                    {{ form.name.label }}
+                    {{ form.name(autocomplete="name", placeholder="Full name") }}
+                    {% for error in form.name.errors %}<span class="field-error">{{ error }}</span>{% endfor %}
+                </div>
+                <div class="field">
+                    {{ form.email.label }}
+                    {{ form.email(autocomplete="email", placeholder="name@organization.com") }}
+                    {% for error in form.email.errors %}<span class="field-error">{{ error }}</span>{% endfor %}
+                </div>
+                <div class="field">
+                    {{ form.phone.label }}
+                    {{ form.phone(autocomplete="tel", placeholder="Optional") }}
+                    {% for error in form.phone.errors %}<span class="field-error">{{ error }}</span>{% endfor %}
+                </div>
+                <div class="field">
+                    {{ form.organization.label }}
+                    {{ form.organization(autocomplete="organization", placeholder="Agency or company") }}
+                    {% for error in form.organization.errors %}<span class="field-error">{{ error }}</span>{% endfor %}
+                </div>
+            </div>
+
+            <div class="field">
+                {{ form.interest.label }}
+                {{ form.interest() }}
+                {% for error in form.interest.errors %}<span class="field-error">{{ error }}</span>{% endfor %}
+            </div>
+
+            <div class="field">
+                {{ form.message.label }}
+                {{ form.message(rows="8", placeholder="Describe the scope, location, assets or facilities, schedule, quantity, standards, and deadline.") }}
+                {% for error in form.message.errors %}<span class="field-error">{{ error }}</span>{% endfor %}
+            </div>
+
+            <button class="button" type="submit">Submit requirement</button>
+            <p class="form-note">
+                Do not submit classified, controlled, proprietary, export-controlled, or
+                personally sensitive information through this form.
+            </p>
+        </form>
+    </div>
+</section>
+{% endblock %}

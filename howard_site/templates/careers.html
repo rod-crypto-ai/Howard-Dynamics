@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="page-hero">
+    <div class="shell page-hero__inner">
+        <div>
+            <p class="eyebrow">Careers</p>
+            <h1>Build the workforce behind reliable operations.</h1>
+        </div>
+        <p>
+            Howard Dynamics is developing a candidate network of mechanics, technicians,
+            logisticians, equipment operators, site-support personnel, and O&amp;M leaders.
+        </p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="shell career-intro">
+        <div>
+            <p class="eyebrow">Candidate network</p>
+            <h2>This is not a promise of immediate employment.</h2>
+        </div>
+        <div>
+            <p>
+                Submit accurate, verifiable information. Candidates are contacted when
+                experience, credentials, location, availability, and customer requirements align.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="section section--muted">
+    <div class="shell form-layout">
+        <aside class="contact-aside">
+            <p class="eyebrow">Strong submissions include</p>
+            <h2>Specific O&amp;M experience.</h2>
+            <ul class="check-list check-list--dark">
+                <li>Equipment, facilities, systems, or functions supported</li>
+                <li>Years and level of responsibility</li>
+                <li>Current location and mobility</li>
+                <li>Licenses, certifications, and clearance status</li>
+                <li>CONUS or OCONUS availability</li>
+                <li>Realistic start-date expectations</li>
+            </ul>
+        </aside>
+
+        <form class="form-card" method="post" novalidate>
+            {{ form.hidden_tag() }}
+
+            <div class="form-grid">
+                <div class="field">
+                    {{ form.name.label }}
+                    {{ form.name(autocomplete="name", placeholder="Full name") }}
+                    {% for error in form.name.errors %}<span class="field-error">{{ error }}</span>{% endfor %}
+                </div>
+                <div class="field">
+                    {{ form.email.label }}
+                    {{ form.email(autocomplete="email", placeholder="name@example.com") }}
+                    {% for error in form.email.errors %}<span class="field-error">{{ error }}</span>{% endfor %}
+                </div>
+                <div class="field">
+                    {{ form.phone.label }}
+                    {{ form.phone(autocomplete="tel", placeholder="Optional") }}
+                    {% for error in form.phone.errors %}<span class="field-error">{{ error }}</span>{% endfor %}
+                </div>
+                <div class="field">
+                    {{ form.location.label }}
+                    {{ form.location(autocomplete="address-level2", placeholder="City, state, or country") }}
+                    {% for error in form.location.errors %}<span class="field-error">{{ error }}</span>{% endfor %}
+                </div>
+                <div class="field">
+                    {{ form.specialty.label }}
+                    {{ form.specialty() }}
+                    {% for error in form.specialty.errors %}<span class="field-error">{{ error }}</span>{% endfor %}
+                </div>
+                <div class="field">
+                    {{ form.clearance_status.label }}
+                    {{ form.clearance_status() }}
+                    {% for error in form.clearance_status.errors %}<span class="field-error">{{ error }}</span>{% endfor %}
+                </div>
+            </div>
+
+            <div class="field">
+                {{ form.message.label }}
+                {{ form.message(rows="8", placeholder="Summarize your hands-on O&amp;M experience, credentials, availability, and preferred locations.") }}
+                {% for error in form.message.errors %}<span class="field-error">{{ error }}</span>{% endfor %}
+            </div>
+
+            <button class="button" type="submit">Join candidate pipeline</button>
+            <p class="form-note">
+                Do not submit Social Security numbers, passport data, medical information,
+                or copies of identity documents through this form.
+            </p>
+        </form>
+    </div>
+</section>
+{% endblock %}

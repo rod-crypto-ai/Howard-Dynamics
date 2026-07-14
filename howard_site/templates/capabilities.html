@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="page-hero">
+    <div class="shell page-hero__inner">
+        <div>
+            <p class="eyebrow">Operations &amp; Maintenance</p>
+            <h1>Connected services built around operational readiness.</h1>
+        </div>
+        <p>
+            Howard Dynamics structures its work under one O&amp;M mission: keep equipment,
+            facilities, material, and personnel ready to perform.
+        </p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="shell capability-list">
+        {% for item in capabilities %}
+            <article class="capability-row reveal">
+                <div class="capability-row__index">{{ "%02d"|format(loop.index) }}</div>
+                <div>
+                    <p class="eyebrow">{{ item.eyebrow }}</p>
+                    <h2>{{ item.title }}</h2>
+                </div>
+                <div>
+                    <p>{{ item.summary }}</p>
+                    <a href="{{ url_for('main.capability_detail', slug=item.slug) }}">
+                        View scope and outcomes <span aria-hidden="true">→</span>
+                    </a>
+                </div>
+            </article>
+        {% endfor %}
+    </div>
+</section>
+
+<section class="section section--muted">
+    <div class="shell centered-callout">
+        <p class="eyebrow">Cross-functional requirement?</p>
+        <h2>Most serious O&amp;M work touches more than one service line.</h2>
+        <p>
+            Send the actual scope. Howard Dynamics can evaluate the maintenance, logistics,
+            staffing, facility, and training elements as one operating requirement.
+        </p>
+        <a class="button" href="{{ url_for('main.contact') }}">Request an O&amp;M review</a>
+    </div>
+</section>
+{% endblock %}

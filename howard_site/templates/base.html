@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ page_title }} | {{ company_name }}</title>
+    <meta name="description" content="{{ page_description|default('Howard Dynamics provides operations and maintenance support for government and commercial customers.') }}">
+    <meta name="theme-color" content="#d73a31">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{{ page_title }} | {{ company_name }}">
+    <meta property="og:description" content="{{ page_description|default('Howard Dynamics provides operations and maintenance support for government and commercial customers.') }}">
+    <meta property="og:url" content="{{ request.url }}">
+    <link rel="canonical" href="{{ request.base_url }}">
+    <link rel="icon" href="{{ url_for('static', filename='img/favicon.png') }}" type="image/png">
+    <link rel="manifest" href="{{ url_for('static', filename='site.webmanifest') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <script defer src="{{ url_for('static', filename='js/main.js') }}"></script>
+</head>
+<body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <header class="site-header" data-header>
+        <div class="announcement">
+            <div class="shell announcement__inner">
+                <span>Operations &amp; Maintenance Services</span>
+                <a href="{{ url_for('main.contact') }}">Submit a requirement <span aria-hidden="true">→</span></a>
+            </div>
+        </div>
+
+        <div class="shell nav-shell">
+            <a class="brand" href="{{ url_for('main.home') }}" aria-label="{{ company_name }} home">
+                <img class="brand__mark" src="{{ url_for('static', filename='img/howard-dynamics-mark.png') }}" alt="" width="104" height="46">
+                <span class="brand__text">
+                    <strong>Howard <em>Dynamics</em></strong>
+                    <small>Operations &amp; Maintenance</small>
+                </span>
+            </a>
+
+            <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation">
+                <span class="sr-only">Open navigation</span>
+                <span></span><span></span><span></span>
+            </button>
+
+            <nav class="primary-nav" id="primary-navigation" aria-label="Primary navigation">
+                <a href="{{ url_for('main.home') }}" {% if request.endpoint == 'main.home' %}aria-current="page"{% endif %}>Home</a>
+
+                <div class="nav-dropdown">
+                    <button class="nav-dropdown__trigger" type="button" aria-expanded="false">
+                        O&amp;M Services <span aria-hidden="true">⌄</span>
+                    </button>
+                    <div class="nav-dropdown__menu">
+                        <a class="nav-dropdown__all" href="{{ url_for('main.capabilities') }}">All O&amp;M services</a>
+                        {% for item in nav_capabilities %}
+                            <a href="{{ url_for('main.capability_detail', slug=item.slug) }}">{{ item.title }}</a>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <a href="{{ url_for('main.government_contracting') }}" {% if request.endpoint == 'main.government_contracting' %}aria-current="page"{% endif %}>Contracting</a>
+                <a href="{{ url_for('main.about') }}" {% if request.endpoint == 'main.about' %}aria-current="page"{% endif %}>About</a>
+                <a href="{{ url_for('main.careers') }}" {% if request.endpoint == 'main.careers' %}aria-current="page"{% endif %}>Careers</a>
+                <a class="button button--small" href="{{ url_for('main.contact') }}">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main-content">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="shell flash-stack" aria-live="polite">
+                    {% for category, message in messages %}
+                        <div class="flash flash--{{ category }}">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="site-footer">
+        <div class="shell footer-grid">
+            <div class="footer-brand">
+                <a href="{{ url_for('main.home') }}" aria-label="{{ company_name }} home">
+                    <img src="{{ url_for('static', filename='img/howard-dynamics-logo.png') }}" alt="Howard Dynamics" width="180" height="164">
+                </a>
+                <p class="footer-summary">
+                    Focused operations and maintenance support for government, defense,
+                    prime-contractor, and commercial requirements.
+                </p>
+                <p class="footer-location">{{ company_location }}</p>
+            </div>
+
+            <div>
+                <h2>O&amp;M Services</h2>
+                <ul>
+                    {% for item in nav_capabilities %}
+                        <li><a href="{{ url_for('main.capability_detail', slug=item.slug) }}">{{ item.title }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div>
+                <h2>Company</h2>
+                <ul>
+                    <li><a href="{{ url_for('main.about') }}">About</a></li>
+                    <li><a href="{{ url_for('main.government_contracting') }}">Government contracting</a></li>
+                    <li><a href="{{ url_for('main.careers') }}">Careers</a></li>
+                    <li><a href="{{ url_for('main.privacy') }}">Privacy</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h2>Start with the scope</h2>
+                <p>Send the requirement, performance location, schedule, quantity, and response deadline.</p>
+                <a class="button button--light button--small" href="{{ url_for('main.contact') }}">Request O&amp;M support</a>
+                {% if contact_email %}<a class="footer-contact" href="mailto:{{ contact_email }}">{{ contact_email }}</a>{% endif %}
+                {% if contact_phone %}<a class="footer-contact" href="tel:{{ contact_phone|replace(' ', '') }}">{{ contact_phone }}</a>{% endif %}
+            </div>
+        </div>
+
+        <div class="shell footer-bottom">
+            <span>© {{ current_year }} {{ company_name }}. All rights reserved.</span>
+            <span>{{ company_tagline }}</span>
+        </div>
+    </footer>
+</body>
+</html>

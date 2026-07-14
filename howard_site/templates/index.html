@@ -1,0 +1,152 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hero">
+    <div class="hero__grid"></div>
+    <div class="shell hero__inner">
+        <div class="hero__copy reveal">
+            <p class="eyebrow">Operations &amp; Maintenance Services</p>
+            <h1>Keep operations running. Keep assets ready.</h1>
+            <p class="hero__lead">
+                Howard Dynamics provides focused O&amp;M support across fleet maintenance,
+                facility operations, logistics, technical field services, and workforce readiness.
+            </p>
+            <div class="button-row">
+                <a class="button" href="{{ url_for('main.contact') }}">Request O&amp;M support</a>
+                <a class="button button--ghost" href="{{ url_for('main.capabilities') }}">View O&amp;M services</a>
+            </div>
+            <div class="hero__proof" aria-label="Company highlights">
+                <div><strong>2017</strong><span>Established</span></div>
+                <div><strong>CONUS + OCONUS</strong><span>Support reach</span></div>
+                <div><strong>One focus</strong><span>Operational readiness</span></div>
+            </div>
+        </div>
+
+        <aside class="mission-card reveal reveal--delay">
+            <img src="{{ url_for('static', filename='img/howard-dynamics-logo.png') }}" alt="Howard Dynamics" width="220" height="200">
+            <p class="mission-card__label">O&amp;M performance model</p>
+            <h2>People, equipment, facilities, and material working as one system.</h2>
+            <ul class="check-list">
+                <li>Preventive and corrective maintenance</li>
+                <li>Facility and site operations</li>
+                <li>Logistics and material accountability</li>
+                <li>Qualified technical workforce</li>
+            </ul>
+        </aside>
+    </div>
+</section>
+
+<section class="section section--tight trusted-strip">
+    <div class="shell">
+        <p>Built to support</p>
+        <div class="trusted-strip__items">
+            <span>Federal agencies</span>
+            <span>Defense organizations</span>
+            <span>Prime contractors</span>
+            <span>Fleet operators</span>
+            <span>Commercial facilities</span>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="shell">
+        <div class="section-heading">
+            <div>
+                <p class="eyebrow">Core O&amp;M Services</p>
+                <h2>One company structure. Five connected service lines.</h2>
+            </div>
+            <p>
+                Howard Dynamics is not positioned as a general-purpose vendor. Every service
+                below supports the same result: reliable operations and measurable readiness.
+            </p>
+        </div>
+
+        <div class="capability-grid">
+            {% for item in capabilities %}
+                <article class="capability-card reveal">
+                    <span class="capability-card__number">{{ "%02d"|format(loop.index) }}</span>
+                    <p class="eyebrow">{{ item.eyebrow }}</p>
+                    <h3>{{ item.title }}</h3>
+                    <p>{{ item.summary }}</p>
+                    <a href="{{ url_for('main.capability_detail', slug=item.slug) }}">
+                        Review service scope <span aria-hidden="true">→</span>
+                    </a>
+                </article>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="section section--dark">
+    <div class="shell split-section">
+        <div class="split-section__copy">
+            <p class="eyebrow">Why Howard Dynamics</p>
+            <h2>O&amp;M execution without unnecessary layers.</h2>
+            <p>
+                The value is not a long capability list. The value is disciplined delivery:
+                clear ownership, accurate status, early problem escalation, and support built
+                around the operating environment.
+            </p>
+            <a class="button button--light" href="{{ url_for('main.about') }}">How we operate</a>
+        </div>
+
+        <div class="differentiator-list">
+            {% for item in differentiators %}
+                <article>
+                    <span>{{ "%02d"|format(loop.index) }}</span>
+                    <div>
+                        <h3>{{ item.title }}</h3>
+                        <p>{{ item.body }}</p>
+                    </div>
+                </article>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="shell process">
+        <div class="section-heading">
+            <div>
+                <p class="eyebrow">Delivery model</p>
+                <h2>From requirement review to accountable execution.</h2>
+            </div>
+            <p>No inflated promises. The scope is evaluated against people, schedule, access, supply, and performance risk before commitment.</p>
+        </div>
+
+        <ol class="process-grid">
+            <li>
+                <span>01</span>
+                <h3>Assess</h3>
+                <p>Confirm the assets, facilities, locations, standards, staffing, and operating constraints.</p>
+            </li>
+            <li>
+                <span>02</span>
+                <h3>Plan</h3>
+                <p>Build the labor, logistics, maintenance, reporting, and risk-control approach.</p>
+            </li>
+            <li>
+                <span>03</span>
+                <h3>Mobilize</h3>
+                <p>Onboard personnel, coordinate access, stage resources, and establish reporting channels.</p>
+            </li>
+            <li>
+                <span>04</span>
+                <h3>Perform</h3>
+                <p>Execute the work, track readiness, close issues, and keep the customer informed.</p>
+            </li>
+        </ol>
+    </div>
+</section>
+
+<section class="section section--cta">
+    <div class="shell cta-panel">
+        <div>
+            <p class="eyebrow">Start with the requirement</p>
+            <h2>Need an O&amp;M provider or a qualified subcontracting partner?</h2>
+            <p>Send the scope and deadline. Howard Dynamics will give you a direct assessment of the fit.</p>
+        </div>
+        <a class="button button--light" href="{{ url_for('main.contact') }}">Submit the requirement</a>
+    </div>
+</section>
+{% endblock %}
